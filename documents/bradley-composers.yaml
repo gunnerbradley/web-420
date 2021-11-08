@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  description: Catalog of classical music composers
+  version: 3.0.0
+  title: Composers API
+schemes:
+  - https
+  - http
+  
+paths:
+  /composers:
+    get:
+      tags:
+        - findAllComposers
+      summary: get list of all composers
+      description: the entire list of composers is sent ot the client
+      operationId: findAllComposers
+      produces:
+        - application/json
+      parameters:
+        - name: composers
+          in: query
+          description: gets all composers
+          required: true
+          type: array
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+
+        '400':
+          description: Invalid status value
+          
+  /composers/{findComposerById}:
+    get:
+      tags:
+      - "findComposerById"
+      summary: "Finds composers by ID"
+      description: "ID values return a composer"
+      operationId: "findComposerById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "composer_id"
+        in: "query"
+        description: "ID values that need to be considered for filter"
+        required: true
+        type: "object"
+        items:
+          type: "string"
+
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+        "400":
+          description: "Invalid ID value"
+          
+  /composers/createComposer/{firsttName}, {lastName}:    
+    post:
+      tags:
+      - "createComposer"
+      summary: "adds a composer"
+      description: ""
+      operationId: "createComposer"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "firstName"
+        in: "path"
+        description: "First name of composer"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "firstName"
+        in: "path"
+        description: "First name of composer"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "lastName"
+        in: "path"
+        description: "last name of composer"
+        required: true
+        type: "integer"
+        format: "int64" 
+
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+        "400":
+          description: "Invalid ID value"
