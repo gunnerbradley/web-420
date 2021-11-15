@@ -1,0 +1,28 @@
+{
+  "name": "web-420",
+  "version": "1.0.0",
+  "description": "Bellevue Web-420",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunnerbradley/web-420.git"
+  },
+  "author": "Gunner Bradley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunnerbradley/web-420/issues"
+  },
+  "homepage": "https://github.com/gunnerbradley/web-420#readme"
+}
