@@ -29,7 +29,7 @@ const router = express.Router();
  *       '501':
  *         description: MongoDB Exception
  */
-router.get('/composer/:id', async(req, res) => {
+router.get('/composers', async(req, res) => {
     try {
         Composer.find({}, (err, composer) =>{
             if (err) {
@@ -42,10 +42,10 @@ router.get('/composer/:id', async(req, res) => {
                 res.json(composer);
             }
         })
-    } catch (e) {
-        console.log(e);
+    } catch (err) {
+        console.log(err);
         res.status(500).send({
-            'message': `Server Exception: ${e.message}`
+            'message': `Server Exception: ${err.message}`
         })
     }
 })
@@ -88,10 +88,10 @@ router.get('/composers/:id', async(req, res) => {
                 res.json(composerById);
             }
         })
-    } catch (e) {
-        console.log(e);
+    } catch (err) {
+        console.log(err);
         res.status(500).send({
-            'message': `Server Exception: ${e.message}`
+            'message': `Server Exception: ${err.message}`
         })
     }
 })
@@ -136,19 +136,15 @@ router.post('/composers', async(req, res) => {
         await Composer.create(newComposer, (err, composer) => {
             if (err) {
                 console.log(err);
-                res.status(501).send({
-                    'message': `MongoDB Exception: ${err}`
-                })
+                res.status(501).send({'message': `MongoDB Exception: ${err}`})
             } else {
                 console.log(composer);
                 res.json(composer);
             }
         })
-    } catch (e) {
-        console.log(e);
-        res.status(500).send({
-            'message': `Server Exception: ${e.message}`
-        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({'message': `Server Exception: ${err.message}`})
     }
 })
 
