@@ -27,7 +27,7 @@ const mongoose = require('mongoose'); //import mongoose
     firstName:  String,
     lastName: String,
     roles: [roleSchema], //document array
-    dependents: [dependentSchema], //document arrays
+    dependents: [dependentSchema], //document array of objects
     birthDate: String
 
   }, {collection: 'people'});

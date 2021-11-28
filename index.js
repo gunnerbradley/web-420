@@ -14,6 +14,7 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const mongoose = require('mongoose');
 const composerAPI = require('./routes/bradley-composer-routes');
 const personAPI = require('./routes/bradley-person-routes');
+const userAPI = require('./routes/bradley-session-routes');
 const DB_USERNAME = process.env.DB_USERNAME
 const DB_PASSWORD = process.env.DB_PASSWORD
 
@@ -52,7 +53,7 @@ const options = {
 const openapiSpecification = swaggerJsdoc(options);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
-app.use("/api", composerAPI, personAPI);
+app.use("/api", composerAPI, personAPI, userAPI);
 
 
 
