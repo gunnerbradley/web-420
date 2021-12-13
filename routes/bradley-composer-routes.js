@@ -149,7 +149,112 @@ router.post('/composers', async(req, res) => {
 })
 
 
+/**
+ * updateComposerById
+ * @openapi
+ * /api/Composers/{id}:
+ *   get:
+ *     tags:
+ *       - Composers
+ *     description:  API for updating a composer document
+ *     summary: updates a composer document
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: Composer document id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Composer updated
+ *       '401':
+ *         description: invalid ID
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB Exception
+ */
+router.put('/composers/:id', async(req, res) => {
+    try {
+        Composer.findOne({'_id': req.params.id}, (err, composer) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send({
+                    'message': `MongoDB Exception: ${err}`
+                })
+            } else if (composer){
+                const doc = composer;
+                doc.firstName = req.body.firstName;
+                doc.lastName = req.body.lastName;
 
+                doc.save();
+
+
+                res.status(200).send({
+                'message': `Composer Updated`
+                })
+                
+            } else if(!composerById){
+                res.status(401).send({
+                    'message': `Invalid Composer ID`
+                })
+            }
+            
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({
+            'message': `Server Exception: ${err.message}`
+        })
+    }
+})
+
+
+/**
+ * deleteComposerById
+ * @openapi
+ * /api/Composers/{id}:
+ *   delete:
+ *     tags:
+ *       - Composers
+ *     description:  API for deleting a composer document
+ *     summary: deletes a composer document
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: Composer document id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Composer deleted
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB Exception
+ */
+router.delete('/composers/:id', async(req, res) => {
+    try {
+        Composer.findByIdAndDelete({'_id': req.params.id},  (err, composer) => {
+            if (err){
+                console.log(err)
+            }
+            else{
+                res.status(200).send({
+                'message': `Composer Deleted: ${composer}`
+                })
+            }
+        })
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({
+            'message': `Server Exception: ${err.message}`
+        })
+    }
+})
 
 
 

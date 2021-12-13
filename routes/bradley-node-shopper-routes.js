@@ -7,6 +7,12 @@
 // ;===========================================
 // */
 
+const Customer = require("../models/bradley-customer");
+
+const express = require("express");
+
+const router = express.Router();
+
 /*
  * createCustomer
  * @openapi
@@ -115,10 +121,10 @@ router.post('/customers/:username/invoices', async(req, res) => {
             } else if (user){
 
                 const newInvoice = {
-                    subtotal = req.body.subtotal,
-                    tax = req.body.tax,
-                    dateCreated = req.body.dateCreated,
-                    lineItems = req.body.lineItems
+                    subtotal: req.body.subtotal,
+                    tax: req.body.tax,
+                    dateCreated: req.body.dateCreated,
+                    lineItems: req.body.lineItems
                 }
 
                 user.invoices.push(newInvoice);
@@ -155,7 +161,7 @@ findAllInvoicesByUserName
  *           type: string
  *     responses:
  *       '200':
- *         description: Customer document
+ *         description: Customers document
  *       '500':
  *         description: Server exception
  *       '501':

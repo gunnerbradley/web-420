@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const composerAPI = require('./routes/bradley-composer-routes');
 const personAPI = require('./routes/bradley-person-routes');
 const userAPI = require('./routes/bradley-session-routes');
-const customerAPI = require('./routes/bradley-customer');
+const customerAPI = require('./routes/bradley-node-shopper-routes');
 const DB_USERNAME = process.env.DB_USERNAME
 const DB_PASSWORD = process.env.DB_PASSWORD
 
